@@ -137,7 +137,7 @@ class ComplexType extends Type
             } else {
                 $getterCode = '  return $this->'.$name.';'.PHP_EOL;
             }
-            $getter      = new PhpFunction('public', 'get'.ucfirst($name), '', $getterCode, $getterComment);
+            $getter      = new PhpFunction('public', 'get'.ucfirst(str_replace('_', '', $name)), '', $getterCode, $getterComment);
             $accessors[] = $getter;
 
             $setterComment = new PhpDocComment();
@@ -159,7 +159,7 @@ class ComplexType extends Type
             $setterCode .= '  return $this;'.PHP_EOL;
             $setter = new PhpFunction(
                 'public',
-                'set'.ucfirst($name),
+                'set'.ucfirst(str_replace('_', '', $name)),
                 $this->buildParametersString(
                     [$name => $typeHint],
                     true,
